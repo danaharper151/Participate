@@ -49,8 +49,7 @@ A mobile application that integrates with SciStarter's API to help users discove
 
 ##  Screenshots
 
-<img src="Screenshot_20260315-143922_Participate" alt="Description of the screenshot" width="150"> <img src="./assets/screenshot.png" alt="Description of the screenshot" width="150"> <img src="./assets/screenshot.png" alt="Description of the screenshot" width="150"> <img src="./assets/screenshot.png" alt="Description of the screenshot" width="150"> <img src="./assets/screenshot.png" alt="Description of the screenshot" width="150">
-
+<img src="Screenshot_20260315-143655_Participate.jpg" alt="" width="150"> <img src="Screenshot_20260315-143711_Participate.jpg" alt="" width="150">  <img src="Screenshot_20260315-143751_Participate.jpg" alt="" width="150">  <img src="Screenshot_20260315-143922_Participate.jpg" alt="" width="150"> <img src="Screenshot_20260315-143734_Participate.jpg" alt="" width="150">
 
 ##  Architecture
 ```
