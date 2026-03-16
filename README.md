@@ -112,16 +112,16 @@ implementation("androidx.datastore:datastore-preferences:1.0.0")
 ##  Getting Started
 
 ### Prerequisites
-- Android Studio Hedgehog | 2023.1.1 or newer
+- Android Studio Panda 2 | 2025.3.2 or newer
 - JDK 17 or higher
 - Android SDK 34
-- SciStarter API Key ([Get one here](https://scistarter.org/api))
+- SciStarter API Key (https://scistarter.org/api)
 
 ### Installation
 
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/participate.git
+git clone https://github.com/danaharper151/Participate.git
 cd participate
 ```
 
@@ -131,12 +131,7 @@ cd participate
      - Line ~320 (login URL)
      - Line ~450 (fetchProjects function)
 
-3. Build and run
-```bash
-./gradlew assembleDebug
-```
-
-Or open in Android Studio and click Run 
+3. Open in Android Studio and click Run 
 
 ##  How to Use
 
@@ -144,17 +139,17 @@ Or open in Android Studio and click Run
 2. **Login**: Authenticate with your SciStarter account to sync your participation
 3. **Track Progress**: Click the ✓ button when you participate in a project
 4. **Unlock Achievements**: Earn badges as you contribute to more projects:
-   - 🌱 Seedling (1 project)
-   - 🌿 Sprout (5 projects)
-   - 🌳 Young Tree (10 projects)
-   - 🌲 Forest Guardian (20 projects)
-   - 🌍 Earth Hero (50 projects)
+   -  Seedling (1 project)
+   -  Sprout (5 projects)
+   -  Young Tree (10 projects)
+   -  Forest Guardian (20 projects)
+   -  Earth Hero (50 projects)
 5. **View Stats**: Check your achievements tab to see your progress
 
 ##  Design Decisions
 
 ### Gamification
-The achievement system was designed to encourage continued engagement through progressive milestones. The confetti animation provides immediate positive feedback, creating a dopamine loop that reinforces participation behavior.
+The achievement system was designed to encourage continued engagement through progressive milestones. The confetti animation celebrates each project joined. 
 
 ### Data Architecture
 Room database was chosen for offline-first architecture, ensuring users can track progress without constant internet connectivity. The ViewModel pattern separates business logic from UI, making the codebase more maintainable and testable.
@@ -182,14 +177,14 @@ This project demonstrates proficiency in:
 
 ## License
 
-This project is open source and available under the [MIT License](LICENSE).
+This project is open source and available under the CC license.
 
 ## Acknowledgments
 
-- [SciStarter](https://scistarter.org/) for providing the API and mission
+- SciStarter (https://scistarter.org/) for providing the API, development support, and inspiration
 - Android Developers community for comprehensive documentation
 - Jetpack Compose samples for UI inspiration
-
+- Anthropic for build assistance
 ---
 
-*Built as a Capstone Project for my BSCS to demonstrate mobile development skills*
+*Built as a part of software engineering coursework to demonstrate mobile development skills*
