@@ -4,37 +4,37 @@ object AchievementDefinitions {
     val allAchievements = listOf(
         AchievementDef(
             id = "first_project",
-            name = "Seedling 🌱",
-            description = "Participated in your first project!",
-            icon = "🌱",
+            name = "Seedling",
+            description = "Joined your first project! Excellent!!",
+            icon = "seedling", // Now references drawable resource
             threshold = 1
         ),
         AchievementDef(
             id = "five_projects",
-            name = "Sprout 🌿",
-            description = "Participated in 5 projects",
-            icon = "🌿",
+            name = "Sprout",
+            description = "Joined 5 projects. Keep up the good work!!",
+            icon = "sprout",
             threshold = 5
         ),
         AchievementDef(
             id = "ten_projects",
-            name = "Young Tree 🌳",
-            description = "Participated in 10 projects",
-            icon = "🌳",
+            name = "Young Tree",
+            description = "Joined 10 projects! Amazing!!",
+            icon = "youngtree",
             threshold = 10
         ),
         AchievementDef(
             id = "twenty_projects",
-            name = "Forest Guardian 🌲",
-            description = "Participated in 20 projects!",
-            icon = "🌲",
+            name = "Forest Guardian",
+            description = "Joined 20 projects! Nice work!!",
+            icon = "forestguardian",
             threshold = 20
         ),
         AchievementDef(
             id = "earth_hero",
-            name = "Earth Hero 🌍",
-            description = "Participated in 50 projects! You're making a real impact!",
-            icon = "🌍",
+            name = "Giant Sequoia",
+            description = "50 acts of science! You're a star!!",
+            icon = "gianttree",
             threshold = 50
         )
     )

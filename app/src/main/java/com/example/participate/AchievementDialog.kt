@@ -1,6 +1,6 @@
 package com.example.participate
 
-import androidx.compose.foundation.background
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -38,7 +39,7 @@ fun AchievementUnlockedDialog(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "🎉 Achievement Unlocked! 🎉",
+                    text = "Achievement Unlocked!",
                     fontSize = 20.sp,
                     color = Color(0xFF00FF00),
                     fontFamily = FontFamily.Serif,
@@ -47,10 +48,13 @@ fun AchievementUnlockedDialog(
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                Text(
-                    text = achievement.icon,
-                    fontSize = 72.sp,
-                    textAlign = TextAlign.Center
+                // app images
+                Image(
+                    painter = painterResource(
+                        id = getDrawableIdFromName(achievement.icon)
+                    ),
+                    contentDescription = achievement.name,
+                    modifier = Modifier.size(180.dp)
                 )
 
                 Spacer(modifier = Modifier.height(16.dp))
@@ -85,5 +89,17 @@ fun AchievementUnlockedDialog(
                 }
             }
         }
+    }
+}
+
+// Helper function to convert icon name to drawable resource ID
+fun getDrawableIdFromName(iconName: String): Int {
+    return when (iconName) {
+        "seedling" -> R.drawable.seedling
+        "sprout" -> R.drawable.sprout
+        "youngtree" -> R.drawable.youngtree
+        "forestguardian" -> R.drawable.forestguardian
+        "gianttree" -> R.drawable.gianttree
+        else -> R.drawable.seedling // Default fallback
     }
 }
