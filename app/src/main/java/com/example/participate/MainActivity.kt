@@ -110,7 +110,7 @@ fun ParticipateApp(viewModel: MainViewModel) {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.evergreenimage),
+                        painter = painterResource(id = R.drawable.earthsmile),
                         contentDescription = "Achievements",
                         modifier = Modifier.size(40.dp)
                     )
@@ -120,7 +120,7 @@ fun ParticipateApp(viewModel: MainViewModel) {
                         fontSize = 14.sp
                     )
                     Image(
-                        painter = painterResource(id = R.drawable.evergreenimage),
+                        painter = painterResource(id = R.drawable.earthheart),
                         contentDescription = "Projects",
                         modifier = Modifier.size(40.dp)
                     )
@@ -175,7 +175,7 @@ fun ParticipateApp(viewModel: MainViewModel) {
                             onClick = {
                                 selectedTab = 0
                                 webViewContent = "finder"
-                                statusText = "Browse projects, click to participate!"
+                                statusText = "Tap the heart to get points for projects you join!"
                             },
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = Color(0xFF1A1A1A),
@@ -352,7 +352,7 @@ fun ParticipateApp(viewModel: MainViewModel) {
                 }
 
                 // Floating Action Button to record participation
-                if (selectedTab == 0 || selectedTab == 1) {
+                if (selectedTab == 0) { //Only show button on Discover
                     FloatingActionButton(
                         onClick = {
                             viewModel.recordParticipation(
@@ -401,7 +401,7 @@ fun ParticipateApp(viewModel: MainViewModel) {
     ) {
         val url = when (contentType) {
             "finder" -> "https://scistarter.org/finder"
-            "login" -> "https://scistarter.org/api/oauth/authorize?key=5XdLfZoqS0vlaczCGl5qXkJuvriLO9D4UXNbPLMB10PAEFt-KgwkRqniTTrgeUO-5PAwyHUhWfDbDAMQ3nYb-Q&redirect_uri=https://yourapp.com/callback"
+            "login" -> "https://scistarter.org"
             "myprojects" -> "https://scistarter.org/dashboard"
             else -> "https://scistarter.org"
         }
