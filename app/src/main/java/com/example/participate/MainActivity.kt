@@ -32,7 +32,10 @@ import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.JSONArray
-
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.foundation.verticalScroll
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,7 +77,9 @@ fun ParticipateApp(viewModel: MainViewModel) {
     val showConfetti by viewModel.showConfetti.collectAsState()
     val newAchievement by viewModel.newAchievement.collectAsState()
     val unlockedAchievements by viewModel.unlockedAchievements.collectAsState()
-    val allProjects by viewModel.allProjects.collectAsState()
+
+    val streakData by viewModel.streakData.collectAsState()
+    val dailyActivities by viewModel.dailyActivities.collectAsState()
 
     Scaffold(
         topBar = {
@@ -101,7 +106,7 @@ fun ParticipateApp(viewModel: MainViewModel) {
                     .fillMaxWidth()
                     .background(Color(0xFF1A1A1A))
             ) {
-                // Show achievement count with images
+                // Show award count and streak
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -111,21 +116,21 @@ fun ParticipateApp(viewModel: MainViewModel) {
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.earthsmile),
-                        contentDescription = "Achievements",
+                        contentDescription = "Awards",
                         modifier = Modifier.size(40.dp)
                     )
                     Text(
-                        text = " ${unlockedAchievements.size} Achievements | ",
+                        text = " ${unlockedAchievements.size} Awards | ",
                         color = Color(0xFF00FF00),
                         fontSize = 14.sp
                     )
                     Image(
                         painter = painterResource(id = R.drawable.earthheart),
-                        contentDescription = "Projects",
+                        contentDescription = "Day Streak",
                         modifier = Modifier.size(40.dp)
                     )
                     Text(
-                        text = " ${allProjects.size} Projects",
+                        text = " ${streakData?.currentStreak ?: 0} Day Streak",
                         color = Color(0xFF00FF00),
                         fontSize = 14.sp
                     )
@@ -175,7 +180,7 @@ fun ParticipateApp(viewModel: MainViewModel) {
                             onClick = {
                                 selectedTab = 0
                                 webViewContent = "finder"
-                                statusText = "Tap the heart to get points for projects you join!"
+                                statusText = "Browse projects daily to unlock awards"
                             },
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = Color(0xFF1A1A1A),
@@ -211,7 +216,7 @@ fun ParticipateApp(viewModel: MainViewModel) {
                             onClick = {
                                 selectedTab = 2
                                 webViewContent = "login"
-                                statusText = "Logging in to SciStarter..."
+                                statusText = "Tap the menu to login to SciStarter"
                             },
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = Color(0xFF1A1A1A),
@@ -236,7 +241,7 @@ fun ParticipateApp(viewModel: MainViewModel) {
                             onClick = {
                                 selectedTab = -1
                                 webViewContent = ""
-                                statusText = "Citizen Science for Good."
+                                statusText = "Explore citizen science through SciStarter"
                             },
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = Color(0xFF1A1A1A),
@@ -250,9 +255,9 @@ fun ParticipateApp(viewModel: MainViewModel) {
                                 verticalAlignment = Alignment.CenterVertically  // horizontal alignment
                             ) {
                                 Image(
-                                    painter = painterResource(id = R.drawable.treesheart),
+                                    painter = painterResource(id = R.drawable.grassheart),
                                     contentDescription = "Home",
-                                    modifier = Modifier.size(32.dp)
+                                    modifier = Modifier.size(40.dp)
                                 )
                                 Text(
                                     text = "Home",
@@ -270,7 +275,7 @@ fun ParticipateApp(viewModel: MainViewModel) {
                             onClick = {
                                 selectedTab = 3
                                 webViewContent = "achievements"
-                                statusText = "View your achievements!"
+                                statusText = "View awards"
                             },
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = Color(0xFF1A1A1A),
@@ -281,7 +286,7 @@ fun ParticipateApp(viewModel: MainViewModel) {
                                 .padding(4.dp)
                         ) {
                             Image(
-                                painter = painterResource(id = R.drawable.forestheart),
+                                painter = painterResource(id = R.drawable.mossheart),
                                 contentDescription = "Achievements",
                                 modifier = Modifier.size(32.dp)
                             )
@@ -296,84 +301,78 @@ fun ParticipateApp(viewModel: MainViewModel) {
                 }
 
 
-                    // Content Area
-                    Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(8.dp)
-                    ) {
-                        when {
-                            isLoading -> {
-                                CircularProgressIndicator(
-                                    modifier = Modifier.align(Alignment.Center),
-                                    color = Color(0xFF00FF00)
-                                )
-                            }
+                // Content Area
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(8.dp)
+                ) {
+                    when {
+                        isLoading -> {
+                            CircularProgressIndicator(
+                                modifier = Modifier.align(Alignment.Center),
+                                color = Color(0xFF00FF00)
+                            )
+                        }
 
-                            webViewContent == "achievements" -> {
-                                AchievementsScreen(
-                                    unlockedAchievements = unlockedAchievements,
-                                    totalProjects = allProjects.size
-                                )
-                            }
+                        webViewContent == "achievements" -> {
+                            AchievementsScreen(
+                                unlockedAchievements = unlockedAchievements,
+                                streakData = streakData,
+                                dailyActivities = dailyActivities
+                            )
+                        }
 
-                            webViewContent.isNotEmpty() -> {
-                                SciStarterWebView(
-                                    contentType = webViewContent,
-                                    onProjectParticipation = { projectName, projectUrl ->
-                                        // Record participation when user interacts with a project
-                                        viewModel.recordParticipation(projectName, projectUrl)
-                                        statusText = "Great work! Participation recorded!"
-                                    }
-                                )
-                            }
+                        webViewContent.isNotEmpty() -> {
+                            SciStarterWebView(
+                                contentType = webViewContent
+                            )
+                        }
 
-                            else -> {
-                                Column(
-                                    modifier = Modifier.align(Alignment.Center),
-                                    horizontalAlignment = Alignment.CenterHorizontally
-                                ) {
-                                    Text(
-                                        text = "Welcome",
-                                        color = Color(0xFF00FF00),
-                                        fontSize = 24.sp,
-                                        fontFamily = FontFamily.Serif
-                                    )
-                                    Spacer(modifier = Modifier.height(8.dp))
-                                    Text(
-                                        text = "Select a tab to begin",
-                                        color = Color(0xFF00FF00),
-                                        fontSize = 18.sp
-                                    )
-                                }
+                        else -> {
+                            Column(
+                                modifier = Modifier.align(Alignment.Center),
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ) {
+                                Text(
+                                    text = "Welcome",
+                                    color = Color(0xFF00FF00),
+                                    fontSize = 24.sp,
+                                    fontFamily = FontFamily.Serif
+                                )
+                                Spacer(modifier = Modifier.height(8.dp))
+                                Text(
+                                    text = "Select a tab to begin",
+                                    color = Color(0xFF00FF00),
+                                    fontSize = 18.sp
+                                )
                             }
                         }
                     }
                 }
+            }
 
-                // Floating Action Button to record participation
-                if (selectedTab == 0) { //Only show button on Discover
-                    FloatingActionButton(
-                        onClick = {
-                            viewModel.recordParticipation(
-                                projectName = "SciStarter Project",
-                                projectUrl = "https://scistarter.org"
-                            )
-                            statusText = "Nice work!!"
-                        },
-                        containerColor = Color(0xFF00FF00),
-                        contentColor = Color.Black,
-                        modifier = Modifier
-                            .align(Alignment.BottomEnd)
-                            .padding(16.dp)
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.treesheart),
-                            contentDescription = "Record Participation",
-                            modifier = Modifier.size(60.dp)
-                        )
-                    }
+
+            // Floating Action Button for confetti celebration
+
+                FloatingActionButton(
+                    onClick = {
+                        viewModel.triggerConfetti()
+                        statusText = "Nice work!!"
+                    },
+                    containerColor = Color(0xFF00FF00),
+                    contentColor = Color.Black,
+                    modifier = Modifier
+                        .align(Alignment.BottomEnd)
+                        .padding(16.dp)
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.ladybug),
+                        contentDescription = "Celebrate",
+                        modifier = Modifier.size(60.dp)
+                    )
                 }
+
 
                 // Confetti overlay
                 if (showConfetti) {
@@ -394,11 +393,10 @@ fun ParticipateApp(viewModel: MainViewModel) {
         }
     }
 
-    @Composable
-    fun SciStarterWebView(
-        contentType: String,
-        onProjectParticipation: (String, String) -> Unit = { _, _ -> }
-    ) {
+@Composable
+fun SciStarterWebView(
+    contentType: String
+) {
         val url = when (contentType) {
             "finder" -> "https://scistarter.org/finder"
             "login" -> "https://scistarter.org"
@@ -419,13 +417,9 @@ fun ParticipateApp(viewModel: MainViewModel) {
                             view: android.webkit.WebView?,
                             request: android.webkit.WebResourceRequest?
                         ): Boolean {
-                            // When user clicks on a project, record participation
+
                             val clickedUrl = request?.url.toString()
-                            if (clickedUrl.contains("/project/") || clickedUrl.contains("scistarter.org/")) {
-                                // Extract project name from URL if possible
-                                val projectName = clickedUrl.substringAfterLast("/").take(50)
-                                onProjectParticipation(projectName, clickedUrl)
-                            }
+
                             return false
                         }
                     }
@@ -446,93 +440,149 @@ fun ParticipateApp(viewModel: MainViewModel) {
         )
     }
 
-    @Composable
-    fun AchievementsScreen(
-        unlockedAchievements: List<Achievement>,
-        totalProjects: Int
+@Composable
+fun AchievementsScreen(
+    unlockedAchievements: List<Achievement>,
+    streakData: StreakData?,
+    dailyActivities: List<DailyActivity>
+) {
+    val scrollState = rememberScrollState()
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Black.copy(alpha = 0.7f))
+            .verticalScroll(scrollState)
+            .padding(16.dp)
     ) {
-        Column(
+        Text(
+            text = "Your Journey",
+            fontSize = 28.sp,
+            color = Color(0xFF00FF00),
+            fontFamily = FontFamily.Serif,
+            modifier = Modifier.padding(bottom = 16.dp)
+        )
+
+        // Streak Stats Card
+        Card(
             modifier = Modifier
-                .fillMaxSize()
-                .background(Color.Black.copy(alpha = 0.7f))
-                .padding(16.dp)
+                .fillMaxWidth()
+                .padding(vertical = 8.dp),
+            colors = CardDefaults.cardColors(
+                containerColor = Color(0xFF1A1A1A),
+                contentColor = Color(0xFF00FF00)
+            )
         ) {
-            Text(
-                text = "Your Achievements",
-                fontSize = 28.sp,
-                color = Color(0xFF00FF00),
-                fontFamily = FontFamily.Serif,
-                modifier = Modifier.padding(bottom = 16.dp)
-            )
-
-            Text(
-                text = "Total Projects: $totalProjects",
-                fontSize = 20.sp,
-                color = Color(0xFF00FF00),
-                modifier = Modifier.padding(bottom = 24.dp)
-            )
-
-            if (unlockedAchievements.isEmpty()) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            ) {
                 Text(
-                    text = "Join projects to unlock achievements!",
-                    fontSize = 18.sp,
-                    color = Color(0xFF00FF00),
-                    modifier = Modifier.padding(16.dp)
+                    text = "Current Streak: ${streakData?.currentStreak ?: 0} days",
+                    fontSize = 20.sp,
+                    fontFamily = FontFamily.Serif,
+                    fontWeight = FontWeight.Bold
                 )
-            } else {
-                unlockedAchievements.forEach { achievement ->
-                    Card(
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = "Longest Streak: ${streakData?.longestStreak ?: 0} days",
+                    fontSize = 16.sp
+                )
+                Text(
+                    text = "Total Days: ${streakData?.totalDaysOpened ?: 0} days",
+                    fontSize = 16.sp
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Calendar View
+        Text(
+            text = "Activity Calendar",
+            fontSize = 20.sp,
+            color = Color(0xFF00FF00),
+            fontFamily = FontFamily.Serif,
+            modifier = Modifier.padding(bottom = 8.dp)
+        )
+
+        CalendarView(
+            activeDates = dailyActivities.map { it.date },
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        // Awards Section
+        Text(
+            text = "Unlocked Awards",
+            fontSize = 20.sp,
+            color = Color(0xFF00FF00),
+            fontFamily = FontFamily.Serif,
+            modifier = Modifier.padding(bottom = 8.dp)
+        )
+
+        if (unlockedAchievements.isEmpty()) {
+            Text(
+                text = "Browse projects daily to unlock awards!",
+                fontSize = 18.sp,
+                color = Color(0xFF00FF00),
+                modifier = Modifier.padding(16.dp)
+            )
+        } else {
+            unlockedAchievements.forEach { achievement ->
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 8.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = Color(0xFF1A1A1A),
+                        contentColor = Color(0xFF00FF00)
+                    )
+                ) {
+                    Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(vertical = 8.dp),
-                        colors = CardDefaults.cardColors(
-                            containerColor = Color(0xFF1A1A1A),
-                            contentColor = Color(0xFF00FF00)
-                        )
+                            .padding(16.dp),
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Row(
+                        Image(
+                            painter = painterResource(
+                                id = getDrawableIdFromName(achievement.icon)
+                            ),
+                            contentDescription = achievement.name,
                             modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(16.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            // App images
-                            Image(
-                                painter = painterResource(
-                                    id = getDrawableIdFromName(achievement.icon)
-                                ),
-                                contentDescription = achievement.name,
-                                modifier = Modifier
-                                    .size(80.dp)
-                                    .padding(end = 16.dp)
+                                .size(80.dp)
+                                .padding(end = 16.dp)
+                        )
+                        Column {
+                            Text(
+                                text = achievement.name,
+                                fontSize = 20.sp,
+                                fontFamily = FontFamily.Serif
                             )
-                            Column {
-                                Text(
-                                    text = achievement.name,
-                                    fontSize = 20.sp,
-                                    fontFamily = FontFamily.Serif
-                                )
-                                Text(
-                                    text = achievement.description,
-                                    fontSize = 14.sp
-                                )
-                            }
+                            Text(
+                                text = achievement.description,
+                                fontSize = 14.sp
+                            )
                         }
                     }
                 }
             }
-
-            Spacer(modifier = Modifier.height(24.dp))
-
-            Text(
-                text = "Keep going!",
-                fontSize = 24.sp,
-                color = Color(0xFF00FF00),
-                fontFamily = FontFamily.Serif,
-                modifier = Modifier.align(Alignment.CenterHorizontally)
-            )
         }
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        Text(
+            text = "Keep up the good work!!",
+            fontSize = 24.sp,
+            color = Color(0xFF00FF00),
+            fontFamily = FontFamily.Serif,
+            modifier = Modifier.align(Alignment.CenterHorizontally)
+        )
     }
+}
 
 
     suspend fun fetchProjects(): String {

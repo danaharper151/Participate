@@ -35,7 +35,7 @@ fun ConfettiAnimation(
                     color = rainbowColors.random(), // Bright rainbow colors!
                     startX = Random.nextFloat(),
                     startY = -0.1f,
-                    size = Random.nextFloat() * 20f + 15f, // Varied sizes: 15-35
+                    size = Random.nextFloat() * 25f + 25f, // Varied sizes: 15-35
                     rotation = Random.nextFloat() * 360f,
                     speedY = Random.nextFloat() * 2f + 1.5f,
                     speedX = (Random.nextFloat() - 0.5f) * 0.6f,

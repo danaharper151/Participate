@@ -95,11 +95,13 @@ fun AchievementUnlockedDialog(
 // Helper function to convert icon name to drawable resource ID
 fun getDrawableIdFromName(iconName: String): Int {
     return when (iconName) {
-        "seedling" -> R.drawable.seedling
-        "sprout" -> R.drawable.sprout
-        "youngtree" -> R.drawable.youngtree
-        "forestguardian" -> R.drawable.forestguardian
-        "gianttree" -> R.drawable.gianttree
-        else -> R.drawable.seedling // Default fallback
+        "sprout_award" -> R.drawable.sprout_award
+        "seedling_award" -> R.drawable.seedling_award
+        "youngtree_award" -> R.drawable.youngtree_award
+        "forestguardian_award" -> R.drawable.forestguardian_award
+        "forestgiant_award" -> R.drawable.forestgiant_award
+        "ancientguardian_award" -> R.drawable.ancientguardian_award
+        "sunrise_award" -> R.drawable.sunrise_award
+        else -> R.drawable.sprout_award // Default fallback
     }
 }
