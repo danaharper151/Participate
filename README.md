@@ -214,7 +214,7 @@ Android Gradle Plugin 8.5.0
 
 ### Development Environment
 ```
-IDE: Android Studio Hedgehog | 2023.1.1+
+IDE: Android Studio Pandas 2 | 2025.3.2
 Build System: Gradle 8.7
 Version Control: Git
 Target Devices: Android phones & tablets (API 24+)
@@ -251,7 +251,7 @@ app/
 
 1. **Clone Repository**
 ```bash
-git clone https://github.com/yourusername/participate.git
+git clone https://github.com/danaharper151/participate.git
 cd participate
 ```
 
@@ -504,7 +504,7 @@ California State University Channel Islands
 - **Android Developers Community**: For comprehensive documentation and sample code
 - **Jetpack Compose Team**: For creating a modern, declarative UI framework
 - **Material Design**: For design guidelines and component specifications
-- **Anthropic**: Claude 4.5 Sonnet: For build assistance
+- **Anthropic Claude 4.5 Sonnet**: For build assistance
 ---
 
 ##  Screenshots
@@ -525,7 +525,7 @@ California State University Channel Islands
 
 ---
 
-### ***Built with LOVE for citizen scientists everywhere***
+### ***Built with love for citizen scientists everywhere***
 
 **Last Updated**: March 18, 2026  
 **Version**: 1.0.0  
