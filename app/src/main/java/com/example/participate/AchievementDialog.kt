@@ -39,7 +39,7 @@ fun AchievementUnlockedDialog(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "Achievement Unlocked!",
+                    text = "Achievement Unlocked!!",
                     fontSize = 20.sp,
                     color = Color(0xFF00FF00),
                     fontFamily = FontFamily.Serif,
@@ -85,7 +85,7 @@ fun AchievementUnlockedDialog(
                         contentColor = Color.Black
                     )
                 ) {
-                    Text("Awesome!", fontFamily = FontFamily.Serif)
+                    Text("Awesome!!", fontFamily = FontFamily.Serif)
                 }
             }
         }
@@ -101,7 +101,7 @@ fun getDrawableIdFromName(iconName: String): Int {
         "forestguardian_award" -> R.drawable.forestguardian_award
         "forestgiant_award" -> R.drawable.forestgiant_award
         "ancientguardian_award" -> R.drawable.ancientguardian_award
-        "sunrise_award" -> R.drawable.sunrise_award
+        "sunrise_award" -> R.drawable.goodmorningsunrise_award
         else -> R.drawable.sprout_award // Default fallback
     }
 }

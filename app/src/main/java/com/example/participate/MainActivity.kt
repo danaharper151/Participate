@@ -36,7 +36,10 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.foundation.verticalScroll
-
+import androidx.compose.material3.IconButton
+import androidx.compose.foundation.layout.width
+import androidx.compose.ui.unit.dp
+import androidx.compose.runtime.LaunchedEffect
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,8 +70,9 @@ fun ParticipateTheme(content: @Composable () -> Unit) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ParticipateApp(viewModel: MainViewModel) {
+    var webViewBackAction: () -> Unit by remember { mutableStateOf({}) }
     var selectedTab by remember { mutableStateOf(0) }
-    var statusText by remember { mutableStateOf("Citizen Science for Good.") }
+    var statusText by remember { mutableStateOf("Explore citizen science through SciStarter") }
     var webViewContent by remember { mutableStateOf("") }
     var isLoading by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
@@ -83,20 +87,43 @@ fun ParticipateApp(viewModel: MainViewModel) {
 
     Scaffold(
         topBar = {
-            Column(
+            Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(Color(0xFF1A1A1A))
+                    .padding(16.dp),
+                verticalAlignment = Alignment.CenterVertically
             ) {
+                // Back button - only show when on Discover or My Projects tabs with web content
+                if ((selectedTab == 0 || selectedTab == 1) && webViewContent.isNotEmpty()) {
+                    IconButton(
+                        onClick = {
+                            // Trigger webview back navigation
+                            webViewBackAction()
+                        }
+                    ) {
+                        Text(
+                            text = "←",
+                            fontSize = 28.sp,
+                            color = Color(0xFF00FF00),
+                            fontFamily = FontFamily.Serif
+                        )
+                    }
+                    Spacer(modifier = Modifier.width(8.dp))
+                }
+
+                // Title (centered if no back button, left-aligned if back button present)
                 Text(
                     text = "Participate",
                     fontSize = 28.sp,
                     color = Color(0xFF00FF00),
                     fontFamily = FontFamily.Serif,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp),
-                    textAlign = androidx.compose.ui.text.style.TextAlign.Center
+                    modifier = Modifier.weight(1f),
+                    textAlign = if ((selectedTab == 0 || selectedTab == 1) && webViewContent.isNotEmpty()) {
+                        androidx.compose.ui.text.style.TextAlign.Start
+                    } else {
+                        androidx.compose.ui.text.style.TextAlign.Center
+                    }
                 )
             }
         },
@@ -216,7 +243,7 @@ fun ParticipateApp(viewModel: MainViewModel) {
                             onClick = {
                                 selectedTab = 2
                                 webViewContent = "login"
-                                statusText = "Tap the menu to login to SciStarter"
+                                statusText = "Tap the menu to sign in to SciStarter"
                             },
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = Color(0xFF1A1A1A),
@@ -257,7 +284,7 @@ fun ParticipateApp(viewModel: MainViewModel) {
                                 Image(
                                     painter = painterResource(id = R.drawable.grassheart),
                                     contentDescription = "Home",
-                                    modifier = Modifier.size(40.dp)
+                                    modifier = Modifier.size(32.dp)
                                 )
                                 Text(
                                     text = "Home",
@@ -286,7 +313,7 @@ fun ParticipateApp(viewModel: MainViewModel) {
                                 .padding(4.dp)
                         ) {
                             Image(
-                                painter = painterResource(id = R.drawable.mossheart),
+                                painter = painterResource(id = R.drawable.idealightbulb),
                                 contentDescription = "Achievements",
                                 modifier = Modifier.size(32.dp)
                             )
@@ -325,7 +352,10 @@ fun ParticipateApp(viewModel: MainViewModel) {
 
                         webViewContent.isNotEmpty() -> {
                             SciStarterWebView(
-                                contentType = webViewContent
+                                contentType = webViewContent,
+                                onBackPressed = { action ->
+                                    webViewBackAction = action
+                                }
                             )
                         }
 
@@ -395,50 +425,141 @@ fun ParticipateApp(viewModel: MainViewModel) {
 
 @Composable
 fun SciStarterWebView(
-    contentType: String
+    contentType: String,
+    onBackPressed: (() -> Unit) -> Unit = {}
 ) {
-        val url = when (contentType) {
-            "finder" -> "https://scistarter.org/finder"
-            "login" -> "https://scistarter.org"
-            "myprojects" -> "https://scistarter.org/dashboard"
-            else -> "https://scistarter.org"
+    var webView: android.webkit.WebView? by remember { mutableStateOf(null) }
+
+    val url = when (contentType) {
+        "finder" -> "https://scistarter.org/finder"
+        "login" -> "https://scistarter.org"
+        "myprojects" -> "https://scistarter.org/dashboard"
+        else -> "https://scistarter.org"
+    }
+
+    LaunchedEffect(webView) {
+        onBackPressed {
+            webView?.let {
+                if (it.canGoBack()) {
+                    it.goBack()
+                }
+            }
         }
+    }
 
-        AndroidView(
-            factory = { context ->
-                android.webkit.WebView(context).apply {
-                    settings.javaScriptEnabled = true
-                    settings.domStorageEnabled = true
-                    settings.loadWithOverviewMode = true
-                    settings.useWideViewPort = true
+    // Force reload when contentType changes
+    LaunchedEffect(contentType) {
+        webView?.loadUrl(url)
+    }
 
-                    webViewClient = object : android.webkit.WebViewClient() {
-                        override fun shouldOverrideUrlLoading(
-                            view: android.webkit.WebView?,
-                            request: android.webkit.WebResourceRequest?
-                        ): Boolean {
+    AndroidView(
+        factory = { context ->
+            android.webkit.WebView(context).apply {
+                webView = this
+                settings.javaScriptEnabled = true
+                settings.domStorageEnabled = true
+                settings.loadWithOverviewMode = true
+                settings.useWideViewPort = true
+                settings.setSupportZoom(true)
+                settings.builtInZoomControls = true
+                settings.displayZoomControls = false
+                settings.javaScriptCanOpenWindowsAutomatically = true
+                settings.allowFileAccess = true
+                settings.allowContentAccess = true
+                settings.userAgentString = "Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
 
-                            val clickedUrl = request?.url.toString()
+                // Handle mixed content
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                    settings.mixedContentMode = android.webkit.WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
+                }
 
-                            return false
-                        }
+                webViewClient = object : android.webkit.WebViewClient() {
+                    override fun shouldOverrideUrlLoading(
+                        view: android.webkit.WebView?,
+                        request: android.webkit.WebResourceRequest?
+                    ): Boolean {
+                        val requestUrl = request?.url.toString()
+
+                        // Log for debugging
+                        android.util.Log.d("WebView", "Loading URL: $requestUrl")
+
+                        // Load all URLs in the WebView
+                        view?.loadUrl(requestUrl)
+                        return true
                     }
 
-                    setBackgroundColor(android.graphics.Color.BLACK)
+                    override fun onPageStarted(
+                        view: android.webkit.WebView?,
+                        url: String?,
+                        favicon: android.graphics.Bitmap?
+                    ) {
+                        super.onPageStarted(view, url, favicon)
+                        android.util.Log.d("WebView", "Page started: $url")
+                    }
 
-                    android.webkit.CookieManager.getInstance().setAcceptCookie(true)
-                    android.webkit.CookieManager.getInstance()
-                        .setAcceptThirdPartyCookies(this, true)
+                    override fun onReceivedError(
+                        view: android.webkit.WebView?,
+                        request: android.webkit.WebResourceRequest?,
+                        error: android.webkit.WebResourceError?
+                    ) {
+                        super.onReceivedError(view, request, error)
+                        android.util.Log.e("WebView", "Error loading: ${error?.description}, URL: ${request?.url}")
+                    }
 
-                    loadUrl(url)
+                    override fun onReceivedHttpError(
+                        view: android.webkit.WebView?,
+                        request: android.webkit.WebResourceRequest?,
+                        errorResponse: android.webkit.WebResourceResponse?
+                    ) {
+                        super.onReceivedHttpError(view, request, errorResponse)
+                        android.util.Log.e("WebView", "HTTP Error: ${errorResponse?.statusCode}, URL: ${request?.url}")
+                    }
                 }
-            },
-            update = { webView ->
-                webView.loadUrl(url)
-            },
-            modifier = Modifier.fillMaxSize()
-        )
-    }
+                webChromeClient = object : android.webkit.WebChromeClient() {
+                    override fun onCreateWindow(
+                        view: android.webkit.WebView?,
+                        isDialog: Boolean,
+                        isUserGesture: Boolean,
+                        resultMsg: android.os.Message?
+                    ): Boolean {
+                        // Load popup URLs in the same WebView
+                        val newWebView = android.webkit.WebView(context)
+                        newWebView.webViewClient = object : android.webkit.WebViewClient() {
+                            override fun shouldOverrideUrlLoading(
+                                view: android.webkit.WebView?,
+                                request: android.webkit.WebResourceRequest?
+                            ): Boolean {
+                                // Load the URL in the main WebView instead
+                                this@apply.loadUrl(request?.url.toString())
+                                return true
+                            }
+                        }
+
+                        val transport = resultMsg?.obj as? android.webkit.WebView.WebViewTransport
+                        transport?.webView = newWebView
+                        resultMsg?.sendToTarget()
+                        return true
+                    }
+                }
+
+                setBackgroundColor(android.graphics.Color.BLACK)
+
+                android.webkit.CookieManager.getInstance().setAcceptCookie(true)
+                android.webkit.CookieManager.getInstance()
+                    .setAcceptThirdPartyCookies(this, true)
+
+                loadUrl(url)
+            }
+        },
+        update = { view ->
+            // Only update if URL changed
+            if (view.url != url) {
+                view.loadUrl(url)
+            }
+        },
+        modifier = Modifier.fillMaxSize()
+    )
+}
 
 @Composable
 fun AchievementsScreen(
@@ -453,7 +574,7 @@ fun AchievementsScreen(
             .fillMaxSize()
             .background(Color.Black.copy(alpha = 0.7f))
             .verticalScroll(scrollState)
-            .padding(16.dp)
+            .padding(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 100.dp)  // Extra bottom padding
     ) {
         Text(
             text = "Your Journey",
@@ -525,7 +646,7 @@ fun AchievementsScreen(
 
         if (unlockedAchievements.isEmpty()) {
             Text(
-                text = "Browse projects daily to unlock awards!",
+                text = "Browse projects daily to unlock awards",
                 fontSize = 18.sp,
                 color = Color(0xFF00FF00),
                 modifier = Modifier.padding(16.dp)
