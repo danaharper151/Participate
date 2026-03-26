@@ -14,9 +14,9 @@ Participate addresses a key challenge in citizen science: maintaining long-term 
 
 ##  Academic & Professional Context
 
-**Developer**: CS Master's candidate
+**Developer**: CS Master's candidate  
 **Purpose**: Developed to showcase practical skills gained in HCI, mobile development, and software engineering coursework  
-**Technical Focus**: Full-stack mobile development, data architecture, algorithm design, and user behavior modeling
+**Technical Focus**: Full-stack mobile development, data architecture, algorithm design, and user behavior modeling  
 
 ##  Core Features
 
