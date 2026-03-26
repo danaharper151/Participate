@@ -15,7 +15,7 @@ Participate addresses a key challenge in citizen science: maintaining long-term 
 ##  Academic & Professional Context
 
 **Developer**: Master's Student in Computer Science  
-**Purpose**: Developed as a part of coursework in HCI, software engineering, and mobile development  
+**Purpose**: "Developed to showcase practical skills gained in HCI, mobile development, and software engineering coursework  
 **Technical Focus**: Full-stack mobile development, data architecture, algorithm design, and user behavior modeling
 
 ##  Core Features
@@ -23,7 +23,7 @@ Participate addresses a key challenge in citizen science: maintaining long-term 
 ### User Engagement Systems
 - **Streak Tracking Algorithm**: Consecutive day detection with automatic reset logic
 - **Progressive Achievement System**: 7-tier milestone system (Days 1, 2, 5, 10, 20, 60, 90)
-- **Behavioral Reinforcement**: Ladybug Confetti button: particle system with 60+ animated elements for positive feedback
+- **Behavioral Reinforcement**: Ladybug confetti button: particle system with 60+ animated elements for positive feedback
 - **Visual Progress Indicators**: Calendar heatmap showing historical activity patterns
 
 ### SciStarter Platform Integration
