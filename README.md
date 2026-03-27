@@ -12,11 +12,64 @@ Participate addresses a key challenge in citizen science: maintaining long-term 
 
 **Key Innovation**: Rather than duplicating SciStarter's existing participation tracking, this app focuses on *engagement metrics* - rewarding users for opening the app and exploring projects daily, thereby driving traffic and sustained interest in the SciStarter ecosystem.
 
+---
+
+##  Installation & Setup
+
+### Prerequisites
+- Android Studio Hedgehog (2023.1.1) or newer
+- JDK 17 or higher
+- Android SDK 34
+- Git
+
+### Quick Start
+
+1. **Clone Repository**
+```bash
+git clone https://github.com/danaharper151/participate.git
+cd participate
+```
+
+2. **Open in Android Studio**
+```
+File → Open → Select project directory
+```
+
+3. **Sync Dependencies**
+```
+File → Sync Project with Gradle Files
+```
+
+4. **Run Application**
+```
+Build → Rebuild Project
+Run → Run 'app' (Shift + F10)
+```
+
+---
+
+##  Screenshots
+
+<p align="center">
+  <img src="images/ParticipateHomeScreen.jpg" alt="Home Screen" width="150" style="margin: 10px;"/>
+  <img src="images/ParticipateAwardsScreen.jpg" alt="Awards" width="150" style="margin: 10px;"/>
+  <img src="images/ParticipateLoginScreen.jpg" alt="Achievement" width="150" style="margin: 10px;"/>
+  <img src="images/ParticipateMyProjectsScreen.jpg" alt="Achievement" width="150" style="margin: 10px;"/>
+  <img src="images/ParticipateDiscoverScreen.jpg" alt="Achievement" width="150" style="margin: 10px;"/>
+  <img src="images/ParticipateConfetti.jpg" alt="Achievement" width="150" style="margin: 10px;"/>
+</p>
+
+
+---
+
+
 ##  Academic & Professional Context
 
 **Developer**: CS Master's candidate  
 **Purpose**: Developed to showcase practical skills gained in HCI, mobile development, and software engineering coursework  
 **Technical Focus**: Full-stack mobile development, data architecture, algorithm design, and user behavior modeling  
+
+---
 
 ##  Core Features
 
@@ -36,6 +89,8 @@ Participate addresses a key challenge in citizen science: maintaining long-term 
 - **Activity Calendar**: Month-view calendar with visual indicators for engagement days
 - **Streak Statistics Dashboard**: Current streak, longest streak, and lifetime total metrics
 - **Achievement Gallery**: Scrollable timeline of unlocked milestones with metadata
+
+---
 
 ##  Technical Implementation
 
@@ -127,6 +182,7 @@ val y = startY + (speedY * progress)  // Simulates gravity
 val rotation = baseRotation + (progress * 720f)  // Two full rotations
 val scale = 0.8f + 0.2f * sin(progress * 6π + offset)  // Twinkle
 ```
+---
 
 ##  Technical Skills Demonstrated
 
@@ -163,6 +219,8 @@ val scale = 0.8f + 0.2f * sin(progress * 6π + offset)  // Twinkle
 -  **Dependency Management**: Gradle with Kotlin DSL and version catalogs
 -  **Error Handling**: Try-catch blocks and graceful degradation
 
+---
+
 ##  Research Applications
 
 This project demonstrates foundational concepts relevant to HCI and behavioral AI research:
@@ -183,6 +241,8 @@ This project demonstrates foundational concepts relevant to HCI and behavioral A
 - NLP analysis of project descriptions for recommendation systems
 - Predictive models for optimal notification timing
 - Clustering users by engagement behavior patterns
+
+---
 
 ##  Technology Stack
 
@@ -220,6 +280,8 @@ Version Control: Git
 Target Devices: Android phones & tablets (API 24+)
 ```
 
+---
+
 ##  Project Structure
 ```
 app/
@@ -239,37 +301,6 @@ app/
 └── build.gradle.kts                      # Dependencies & config
 ```
 
-##  Installation & Setup
-
-### Prerequisites
-- Android Studio Hedgehog (2023.1.1) or newer
-- JDK 17 or higher
-- Android SDK 34
-- Git
-
-### Quick Start
-
-1. **Clone Repository**
-```bash
-git clone https://github.com/danaharper151/participate.git
-cd participate
-```
-
-2. **Open in Android Studio**
-```
-File → Open → Select project directory
-```
-
-3. **Sync Dependencies**
-```
-File → Sync Project with Gradle Files
-```
-
-4. **Run Application**
-```
-Build → Rebuild Project
-Run → Run 'app' (Shift + F10)
-```
 
 ### Database Schema Initialization
 
@@ -297,6 +328,8 @@ CREATE TABLE achievements (
     isUnlocked INTEGER
 );
 ```
+
+---
 
 ##  User Flow
 ```
@@ -343,6 +376,8 @@ UI Recomposes with New State
 User Sees Updated Streak & Awards
 ```
 
+---
+
 ##  Testing Considerations
 
 ### Unit Testing Opportunities
@@ -363,6 +398,8 @@ User Sees Updated Streak & Awards
 - Dialog appearance on achievement unlock
 - Confetti animation triggering
 
+---
+
 ##  Privacy & Data Handling
 
 **Data Collection**: 
@@ -377,6 +414,9 @@ User Sees Updated Streak & Awards
 - App-scoped database (automatically deleted on uninstall)
 - No cloud synchronization
 - No analytics or tracking
+
+
+---
 
 ##  Design Decisions & Rationale
 
@@ -413,6 +453,8 @@ User Sees Updated Streak & Awards
 - **Better State Management**: Built-in state hoisting
 - **Improved Previews**: Faster development iteration
 
+---
+
 ##  Key Achievements
 
 -  **Zero Crashes**: Robust error handling throughout
@@ -422,31 +464,7 @@ User Sees Updated Streak & Awards
 -  **Accessible**: High contrast green-on-black theme
 -  **Professional UI**: Polished with custom graphics
 
-##  Future Enhancements
-
-### Short-Term (Portfolio Extensions)
-- [ ] Unit tests for streak calculation logic
-- [ ] UI tests for Compose screens
-- [ ] Export streak data to CSV
-- [ ] Share achievement badges to social media
-
-### Medium-Term (Feature Development)
-- [ ] Push notifications for streak reminders
-- [ ] Widget showing current streak on home screen
-- [ ] Multiple theme options (dark/light/custom)
-- [ ] Achievement progression animations
-
-### Long-Term (Research Applications)
-- [ ] A/B testing framework for achievement thresholds
-- [ ] Machine learning model for churn prediction
-- [ ] Recommendation system for project discovery
-- [ ] User behavior analytics dashboard
-
-### Potential ML Extensions
-- [ ] **Personalized Notifications**: Reinforcement learning to optimize reminder timing
-- [ ] **Project Recommendations**: Collaborative filtering based on engagement patterns
-- [ ] **Churn Prediction**: Logistic regression to identify at-risk users
-- [ ] **Sentiment Analysis**: NLP on SciStarter project descriptions for better categorization
+---
 
 ##  Learning Outcomes
 
@@ -474,19 +492,13 @@ User Sees Updated Streak & Awards
 - Integrating third-party platforms (SciStarter)
 - Designing intuitive user experiences
 
-##  Contributing
-
-This is a portfolio project, but feedback and suggestions are welcome!
-
-**Areas Open for Discussion**:
-- Algorithm optimization strategies
-- Additional achievement milestone ideas
-- UI/UX improvement suggestions
-- Testing approach recommendations
+---
 
 ##  License
 
 This project is open source and available under the [MIT License](LICENSE).
+
+---
 
 ##  Author
 
@@ -497,6 +509,8 @@ California State University Channel Islands
 - GitHub: @danaharper151 https://github.com/danaharper151
 - LinkedIn: https://linkedin.com/in/danasharper
 
+---
+
 
 ##  Acknowledgments
 
@@ -505,28 +519,13 @@ California State University Channel Islands
 - **Jetpack Compose Team**: For creating a modern, declarative UI framework
 - **Material Design**: For design guidelines and component specifications
 - **Anthropic Claude 4.5 Sonnet**: For build assistance
----
-
-##  Screenshots
-
-<p align="center">
-  <img src="images/ParticipateHomeScreen.jpg" alt="Home Screen" width="250" style="margin: 10px;"/>
-  <img src="images/ParticipateAwardsScreen.jpg" alt="Awards" width="250" style="margin: 10px;"/>
-  <img src="images/ParticipateLoginScreen.jpg" alt="Achievement" width="250" style="margin: 10px;"/>
-  <img src="images/ParticipateMyProjectsScreen.jpg" alt="Achievement" width="250" style="margin: 10px;"/>
-  <img src="images/ParticipateDiscoverScreen.jpg" alt="Achievement" width="250" style="margin: 10px;"/>
-  <img src="images/ParticipateConfetti.jpg" alt="Achievement" width="250" style="margin: 10px;"/>
-</p>
 
 
 ---
 
-
-
----
 
 ### ***Built with love for citizen scientists everywhere***
 
-**Last Updated**: March 18, 2026  
+**Last Updated**: March 27, 2026  
 **Version**: 1.0.0  
 **Status**: Active Development
