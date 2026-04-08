@@ -1,6 +1,10 @@
-# Participate - Citizen Science Engagement Platform
+# Participate  
+### Community Science Engagement Platform
+A mobile application designed to encourage daily engagement with the **SciStarter** platform through positive reinforcement and streak tracking. Built with modern Android development practices to demonstrate proficiency in mobile engineering, data persistence, UI/UX design, and behavioral psychology principles.
 
-A mobile application designed to encourage daily engagement with the SciStarter citizen science platform through positive reinforcement and streak tracking. Built with modern Android development practices to demonstrate proficiency in mobile engineering, data persistence, UI/UX design, and behavioral psychology principles.
+**Community Science** is public participation in scientific research, where volunteers collaborate with scientists to collect data, make observations, and address community-driven environmental or social issues. It enables anyone to contribute to scientific discovery- regardless of background- often using technology to monitor air quality, track wildlife, or study ecosystems.  
+
+**SciStarter.org** is a globally recognized online hub and database that connects the public with over 1,800 vetted community science projects, events, and tools. Founded to break down barriers to scientific participation, it enables all people to contribute to real research.
 
 [![Kotlin](https://img.shields.io/badge/Kotlin-1.9.0-blue.svg)](https://kotlinlang.org)
 [![Android](https://img.shields.io/badge/Android-API%2024+-green.svg)](https://developer.android.com)
@@ -8,7 +12,7 @@ A mobile application designed to encourage daily engagement with the SciStarter 
 
 ##  Project Overview
 
-Participate addresses a key challenge in citizen science: maintaining long-term user engagement. By implementing psychological principles of healthy habit formation through daily streak tracking and progressive achievement unlocking, the app transforms casual exploration into consistent engagement with the SciStarter platform. Encouraging the public to participate in scientific research and stay engaged with their communities and the world around them. 
+Participate addresses a key challenge in community science: maintaining long-term user engagement. By providing a structured framework for consistant contribution through daily streak tracking and progressive achievement unlocking, the app transforms casual exploration into consistent engagement with the SciStarter platform. Encouraging the public to stay engaged with their communities and the world around them by participating in scientific research. 
 
 **Key Innovation**: Rather than duplicating SciStarter's existing participation tracking, this app focuses on *engagement metrics* - rewarding users for opening the app and exploring projects daily, thereby driving traffic and sustained interest in the SciStarter ecosystem.
 
@@ -80,7 +84,7 @@ Run → Run 'app' (Shift + F10)
 - **Visual Progress Indicators**: Calendar heatmap showing historical activity patterns
 
 ### SciStarter Platform Integration
-- **Embedded Web Views**: Seamless in-app browsing of 3000+ citizen science projects
+- **Embedded Web Views**: Seamless in-app browsing of 3000+ community science projects
 - **OAuth Authentication**: Secure login integration with SciStarter's API
 - **Dashboard Access**: Direct link to user's SciStarter project history
 - **Project Discovery**: Full access to SciStarter's project finder with category filtering
@@ -226,9 +230,9 @@ val scale = 0.8f + 0.2f * sin(progress * 6π + offset)  // Twinkle
 This project demonstrates foundational concepts relevant to HCI and behavioral AI research:
 
 **Human-Computer Interaction**:
-- Gamification mechanics and their effect on user retention
-- Visual feedback systems and dopamine-driven engagement loops
-- Habit formation through consistent interface interactions
+- Collaborative Achievement Frameworks: Interactive milestones and recognition to foster a sense of progress and encourage continued participation.
+- Meaningful Progress Visualization: Clear feedback systems that celebrate consistancy and reinforce the tangible impact of participation in the research community.
+- Sustainable Participation Routines: Intuitive interfaces that help users seamlessly integrate exploration of community science into their daily lives.
 
 **Data Science Potential**:
 - Time-series analysis of engagement patterns
@@ -514,17 +518,17 @@ California State University Channel Islands
 
 ##  Acknowledgments
 
-- **SciStarter**: For providing the API and platform that makes citizen science accessible
+- **SciStarter**: For providing the API and platform that makes community science accessible
 - **Android Developers Community**: For comprehensive documentation and sample code
 - **Jetpack Compose Team**: For creating a modern, declarative UI framework
 - **Material Design**: For design guidelines and component specifications
-- **Anthropic Claude 4.5 Sonnet**: For build assistance
+- **Anthropic Claude Sonnet 4.5**: For build assistance
 
 
 ---
 
 
-### ***Built with love for citizen scientists everywhere***
+### ***Built with love for community scientists everywhere***
 
 **Last Updated**: March 27, 2026  
 **Version**: 1.0.0  
