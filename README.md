@@ -55,12 +55,14 @@ Run → Run 'app' (Shift + F10)
 ##  Screenshots
 
 <p align="center">
-  <img src="images/ParticipateHomeScreen.jpg" alt="Home Screen" width="150" style="margin: 10px;"/>
-  <img src="images/ParticipateAwardsScreen.jpg" alt="Awards" width="150" style="margin: 10px;"/>
-  <img src="images/ParticipateLoginScreen.jpg" alt="Achievement" width="150" style="margin: 10px;"/>
-  <img src="images/ParticipateMyProjectsScreen.jpg" alt="Achievement" width="150" style="margin: 10px;"/>
-  <img src="images/ParticipateDiscoverScreen.jpg" alt="Achievement" width="150" style="margin: 10px;"/>
-  <img src="images/ParticipateConfetti.jpg" alt="Achievement" width="150" style="margin: 10px;"/>
+  <img src="images/ParticipateHomeScreen.jpg" alt="Home Screen" width="200" style="margin: 10px;"/>
+  <img src="images/ParticipateAwardScreen.jpg" alt="Streak" width="200" style="margin: 10px;"/>
+  <img src="images/ParticipateUnlockedAwards.jpg" alt="Awards" width="200" style="margin: 10px;"/>
+  <img src="images/ParticipateLoginScreen.jpg" alt="Achievement" width="200" style="margin: 10px;"/>
+  <img src="images/ParticipateMyProjects.jpg" alt="Achievement" width="200" style="margin: 10px;"/>
+  <img src="images/ParticipateDiscoverScreen.jpg" alt="Achievement" width="200" style="margin: 10px;"/>
+  <img src="images/ParticipateConfetti.jpg" alt="Achievement" width="200" style="margin: 10px;"/>
+  
 </p>
 
 
@@ -79,8 +81,8 @@ Run → Run 'app' (Shift + F10)
 
 ### User Engagement Systems
 - **Streak Tracking Algorithm**: Consecutive day detection with automatic reset logic
-- **Progressive Achievement System**: 7-tier milestone system (Days 1, 2, 5, 10, 20, 60, 90)
-- **Behavioral Reinforcement**: Ladybug confetti button: particle system with 60+ animated elements for positive feedback
+- **Progressive Achievement System**: 7-tier milestone system (Days 1, 2, 7, 14, 21, 28, 31)
+- **Behavioral Reinforcement**: Ladybug confetti: particle system with 60+ animated elements for positive feedback
 - **Visual Progress Indicators**: Calendar heatmap showing historical activity patterns
 
 ### SciStarter Platform Integration
