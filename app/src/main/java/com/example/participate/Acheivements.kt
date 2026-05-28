@@ -5,51 +5,51 @@ object AchievementDefinitions {
         AchievementDef(
             id = "day_1",
             name = "Sprout",
-            description = "Day One: Welcome, Citizen Scientist!!",
+            description = "Day 1: Welcome Community Scientist!!",
             icon = "sprout_award",
             threshold = 1
         ),
         AchievementDef(
             id = "day_2",
             name = "Seedling",
-            description = "Two days in a row: Excellent!!",
+            description = "2 days in a row: Excellent!!",
             icon = "seedling_award",
             threshold = 2
         ),
         AchievementDef(
-            id = "day_5",
+            id = "day_7",
             name = "Young Tree",
-            description = "5 day streak: Nice Work!!",
+            description = "7 day streak: Nice Work!!",
             icon = "youngtree_award",
-            threshold = 5
+            threshold = 7
         ),
         AchievementDef(
-            id = "day_10",
+            id = "day_14",
             name = "Forest Guardian",
-            description = "10 day streak: Amazing!!",
+            description = "14 day streak: Amazing!!",
             icon = "forestguardian_award",
-            threshold = 10
+            threshold = 14
         ),
         AchievementDef(
-            id = "day_20",
+            id = "day_21",
             name = "Forest Giant",
-            description = "20 day streak: Keep up the good work!!",
+            description = "21 day streak: Keep up the good work!!",
             icon = "forestgiant_award",
-            threshold = 20
+            threshold = 21
         ),
         AchievementDef(
-            id = "day_60",
+            id = "day_28",
             name = "Ancient Guardian",
-            description = "60 days of science!! You're absolute MARVEL!!",
+            description = "28 day streak!! You're an absolute MARVEL!!",
             icon = "ancientguardian_award",
-            threshold = 60
+            threshold = 28
         ),
         AchievementDef(
-            id = "day_90",
+            id = "day_31",
             name = "Sunrise",
-            description = "90 days of science!! You're a STAR!!",
+            description = "31 days of Community Science, you're a STAR!!",
             icon = "sunrise_award",
-            threshold = 90
+            threshold = 31
         )
     )
 }

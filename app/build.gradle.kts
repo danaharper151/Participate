@@ -1,8 +1,13 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id("com.google.devtools.ksp") version "1.9.0-1.0.13"
+    id("com.google.devtools.ksp") version "2.3.2"
+    alias(libs.plugins.kotlin.compose)
 
+}
+
+ksp {
+    arg("room.generateKotlin", "true")
 }
 
 android {
@@ -41,9 +46,6 @@ android {
     buildFeatures {
         compose = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
-    }
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -66,9 +68,9 @@ dependencies {
     implementation("com.google.code.gson:gson:2.10.1")
 
     // Room Database
-    implementation("androidx.room:room-runtime:2.6.1")
-    implementation("androidx.room:room-ktx:2.6.1")
-    ksp("androidx.room:room-compiler:2.6.1")
+    implementation("androidx.room:room-runtime:2.7.0-alpha01")
+    implementation("androidx.room:room-ktx:2.7.0-alpha01")
+    ksp("androidx.room:room-compiler:2.7.0-alpha01")
 
     // Lottie for animations
     implementation("com.airbnb.android:lottie-compose:6.3.0")

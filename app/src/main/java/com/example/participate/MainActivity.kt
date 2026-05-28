@@ -72,7 +72,7 @@ fun ParticipateTheme(content: @Composable () -> Unit) {
 fun ParticipateApp(viewModel: MainViewModel) {
     var webViewBackAction: () -> Unit by remember { mutableStateOf({}) }
     var selectedTab by remember { mutableStateOf(0) }
-    var statusText by remember { mutableStateOf("Explore citizen science through SciStarter") }
+    var statusText by remember { mutableStateOf("Explore community science through SciStarter") }
     var webViewContent by remember { mutableStateOf("") }
     var isLoading by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
@@ -142,7 +142,7 @@ fun ParticipateApp(viewModel: MainViewModel) {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.earthsmile),
+                        painter = painterResource(id = R.drawable.idealightbulb),
                         contentDescription = "Awards",
                         modifier = Modifier.size(40.dp)
                     )
@@ -268,7 +268,7 @@ fun ParticipateApp(viewModel: MainViewModel) {
                             onClick = {
                                 selectedTab = -1
                                 webViewContent = ""
-                                statusText = "Explore citizen science through SciStarter"
+                                statusText = "Explore community science through SciStarter"
                             },
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = Color(0xFF1A1A1A),

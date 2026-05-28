@@ -40,14 +40,14 @@ interface AppDao {
     suspend fun getStreakData(): StreakData?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun updateStreakData(streakData: StreakData)
+    suspend fun updateStreakData(streakData: StreakData): Long
 
     @Query("SELECT * FROM streak_data WHERE id = 1")
     fun getStreakDataFlow(): Flow<StreakData?>
 
     // Daily activity operations
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertDailyActivity(activity: DailyActivity)
+    suspend fun insertDailyActivity(activity: DailyActivity): Long
 
     @Query("SELECT * FROM daily_activity ORDER BY date DESC")
     fun getAllDailyActivities(): Flow<List<DailyActivity>>
@@ -63,10 +63,10 @@ interface AppDao {
     suspend fun getAchievement(achievementId: String): Achievement?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAchievement(achievement: Achievement)
+    suspend fun insertAchievement(achievement: Achievement): Long
 
     @Update
-    suspend fun updateAchievement(achievement: Achievement)
+    suspend fun updateAchievement(achievement: Achievement): Int
 }
 
 // Database
