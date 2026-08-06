@@ -1,4 +1,4 @@
-package com.example.participate
+package com.science.participate
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -26,7 +26,7 @@ fun AchievementUnlockedDialog(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp)
-                .border(2.dp, Color(0xFF00FF00), RoundedCornerShape(16.dp)),
+                .border(2.dp, Color(0xFF00FF38), RoundedCornerShape(16.dp)),
             shape = RoundedCornerShape(16.dp),
             colors = CardDefaults.cardColors(
                 containerColor = Color(0xFF1A1A1A)
@@ -41,7 +41,7 @@ fun AchievementUnlockedDialog(
                 Text(
                     text = "Achievement Unlocked!!",
                     fontSize = 20.sp,
-                    color = Color(0xFF00FF00),
+                    color = Color(0xFF00FF38),
                     fontFamily = FontFamily.Serif,
                     textAlign = TextAlign.Center
                 )
@@ -62,7 +62,7 @@ fun AchievementUnlockedDialog(
                 Text(
                     text = achievement.name,
                     fontSize = 24.sp,
-                    color = Color(0xFF00FF00),
+                    color = Color(0xFF00FF38),
                     fontFamily = FontFamily.Serif,
                     textAlign = TextAlign.Center
                 )
@@ -72,7 +72,7 @@ fun AchievementUnlockedDialog(
                 Text(
                     text = achievement.description,
                     fontSize = 16.sp,
-                    color = Color(0xFF00FF00),
+                    color = Color(0xFF00FF38),
                     textAlign = TextAlign.Center
                 )
 
@@ -81,7 +81,7 @@ fun AchievementUnlockedDialog(
                 Button(
                     onClick = onDismiss,
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xFF00FF00),
+                        containerColor = Color(0xFF00FF38),
                         contentColor = Color.Black
                     )
                 ) {

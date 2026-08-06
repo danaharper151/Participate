@@ -1,4 +1,4 @@
-package com.example.participate
+package com.science.participate
 
 import android.content.Context
 import androidx.room.*

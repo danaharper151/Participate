@@ -1,4 +1,4 @@
-package com.example.participate
+package com.science.participate
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -41,7 +41,7 @@ fun CalendarView(
         Text(
             text = monthFormat.format(today),
             fontSize = 20.sp,
-            color = Color(0xFF00FF00),
+            color = Color(0xFF00FF38),
             fontFamily = FontFamily.Serif,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(bottom = 16.dp)
@@ -56,7 +56,7 @@ fun CalendarView(
                 Text(
                     text = day,
                     fontSize = 14.sp,
-                    color = Color(0xFF00FF00),
+                    color = Color(0xFF00FF38),
                     modifier = Modifier.weight(1f),
                     textAlign = androidx.compose.ui.text.style.TextAlign.Center
                 )
@@ -97,7 +97,7 @@ fun CalendarView(
                                 Box(
                                     modifier = Modifier
                                         .size(32.dp)
-                                        .background(Color(0xFF00FF00), CircleShape),
+                                        .background(Color(0xFF00FF38), CircleShape),
                                     contentAlignment = Alignment.Center
                                 ) {
                                     Text(
@@ -111,7 +111,7 @@ fun CalendarView(
                                 Text(
                                     text = dayCounter.toString(),
                                     fontSize = 14.sp,
-                                    color = Color(0xFF00FF00).copy(alpha = 0.5f)
+                                    color = Color(0xFF00FF38).copy(alpha = 0.5f)
                                 )
                             }
                         }

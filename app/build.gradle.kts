@@ -11,11 +11,11 @@ ksp {
 }
 
 android {
-    namespace = "com.example.participate"
+    namespace = "com.science.participate"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.participate"
+        applicationId = "com.science.participate"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

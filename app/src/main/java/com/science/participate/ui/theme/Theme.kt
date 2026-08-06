@@ -1,6 +1,5 @@
-package com.example.participate.ui.theme
+package com.science.participate.ui.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme

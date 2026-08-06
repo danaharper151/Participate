@@ -1,4 +1,4 @@
-package com.example.participate
+package com.science.participate
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

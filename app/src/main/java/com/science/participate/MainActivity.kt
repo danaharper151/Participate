@@ -1,4 +1,4 @@
-package com.example.participate // Update with your actual package name
+package com.science.participate // Update with your actual package name
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -27,18 +27,14 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import org.json.JSONArray
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.IconButton
 import androidx.compose.foundation.layout.width
-import androidx.compose.ui.unit.dp
 import androidx.compose.runtime.LaunchedEffect
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,12 +52,12 @@ class MainActivity : ComponentActivity() {
 fun ParticipateTheme(content: @Composable () -> Unit) {
     MaterialTheme(
         colorScheme = darkColorScheme(
-            primary = Color(0xFF00FF00),
+            primary = Color(0xFF00FF38),
             background = Color.Black,
             surface = Color(0xFF1A1A1A),
             onPrimary = Color.Black,
-            onBackground = Color(0xFF00FF00),
-            onSurface = Color(0xFF00FF00)
+            onBackground = Color(0xFF00FF38),
+            onSurface = Color(0xFF00FF38)
         ),
         content = content
     )
@@ -105,7 +101,7 @@ fun ParticipateApp(viewModel: MainViewModel) {
                         Text(
                             text = "←",
                             fontSize = 28.sp,
-                            color = Color(0xFF00FF00),
+                            color = Color(0xFF00FF38),
                             fontFamily = FontFamily.Serif
                         )
                     }
@@ -116,7 +112,7 @@ fun ParticipateApp(viewModel: MainViewModel) {
                 Text(
                     text = "Participate",
                     fontSize = 28.sp,
-                    color = Color(0xFF00FF00),
+                    color = Color(0xFF00FF38),
                     fontFamily = FontFamily.Serif,
                     modifier = Modifier.weight(1f),
                     textAlign = if ((selectedTab == 0 || selectedTab == 1) && webViewContent.isNotEmpty()) {
@@ -148,7 +144,7 @@ fun ParticipateApp(viewModel: MainViewModel) {
                     )
                     Text(
                         text = " ${unlockedAchievements.size} Awards | ",
-                        color = Color(0xFF00FF00),
+                        color = Color(0xFF00FF38),
                         fontSize = 14.sp
                     )
                     Image(
@@ -158,13 +154,13 @@ fun ParticipateApp(viewModel: MainViewModel) {
                     )
                     Text(
                         text = " ${streakData?.currentStreak ?: 0} Day Streak",
-                        color = Color(0xFF00FF00),
+                        color = Color(0xFF00FF38),
                         fontSize = 14.sp
                     )
                 }
                 Text(
                     text = statusText,
-                    color = Color(0xFF00FF00),
+                    color = Color(0xFF00FF38),
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 12.dp, vertical = 8.dp),
@@ -211,14 +207,14 @@ fun ParticipateApp(viewModel: MainViewModel) {
                             },
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = Color(0xFF1A1A1A),
-                                contentColor = Color(0xFF00FF00)
+                                contentColor = Color(0xFF00FF38)
                             ),
                             modifier = Modifier
                                 .weight(0.9f)
                                 .padding(4.dp),
                             enabled = !isLoading
                         ) {
-                            Text("Discover")
+                            Text("Search")
                         }
 
                         Button(
@@ -229,7 +225,7 @@ fun ParticipateApp(viewModel: MainViewModel) {
                             },
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = Color(0xFF1A1A1A),
-                                contentColor = Color(0xFF00FF00)
+                                contentColor = Color(0xFF00FF38)
                             ),
                             modifier = Modifier
                                 .weight(1.2f)
@@ -247,7 +243,7 @@ fun ParticipateApp(viewModel: MainViewModel) {
                             },
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = Color(0xFF1A1A1A),
-                                contentColor = Color(0xFF00FF00)
+                                contentColor = Color(0xFF00FF38)
                             ),
                             modifier = Modifier
                                 .weight(0.9f)
@@ -272,17 +268,17 @@ fun ParticipateApp(viewModel: MainViewModel) {
                             },
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = Color(0xFF1A1A1A),
-                                contentColor = Color(0xFF00FF00)
+                                contentColor = Color(0xFF00FF38)
                             ),
                             modifier = Modifier
                                 .weight(1f)
-                                .padding(4.dp)
+                                .padding(2.dp)
                         ) {
                             Row(
                                 verticalAlignment = Alignment.CenterVertically  // horizontal alignment
                             ) {
                                 Image(
-                                    painter = painterResource(id = R.drawable.grassheart),
+                                    painter = painterResource(id = R.drawable.earthheart),
                                     contentDescription = "Home",
                                     modifier = Modifier.size(32.dp)
                                 )
@@ -306,11 +302,11 @@ fun ParticipateApp(viewModel: MainViewModel) {
                             },
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = Color(0xFF1A1A1A),
-                                contentColor = Color(0xFF00FF00)
+                                contentColor = Color(0xFF00FF38)
                             ),
                             modifier = Modifier
                                 .weight(1f)
-                                .padding(4.dp)
+                                .padding(2.dp)
                         ) {
                             Image(
                                 painter = painterResource(id = R.drawable.idealightbulb),
@@ -338,7 +334,7 @@ fun ParticipateApp(viewModel: MainViewModel) {
                         isLoading -> {
                             CircularProgressIndicator(
                                 modifier = Modifier.align(Alignment.Center),
-                                color = Color(0xFF00FF00)
+                                color = Color(0xFF00FF38)
                             )
                         }
 
@@ -366,14 +362,14 @@ fun ParticipateApp(viewModel: MainViewModel) {
                             ) {
                                 Text(
                                     text = "Welcome",
-                                    color = Color(0xFF00FF00),
+                                    color = Color(0xFF00FF38),
                                     fontSize = 24.sp,
                                     fontFamily = FontFamily.Serif
                                 )
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
                                     text = "Select a tab to begin",
-                                    color = Color(0xFF00FF00),
+                                    color = Color(0xFF00FF38),
                                     fontSize = 18.sp
                                 )
                             }
@@ -390,7 +386,7 @@ fun ParticipateApp(viewModel: MainViewModel) {
                         viewModel.triggerConfetti()
                         statusText = "Nice work!!"
                     },
-                    containerColor = Color(0xFF00FF00),
+                    containerColor = Color(0xFF00FF38),
                     contentColor = Color.Black,
                     modifier = Modifier
                         .align(Alignment.BottomEnd)
@@ -579,7 +575,7 @@ fun AchievementsScreen(
         Text(
             text = "Your Journey",
             fontSize = 28.sp,
-            color = Color(0xFF00FF00),
+            color = Color(0xFF00FF38),
             fontFamily = FontFamily.Serif,
             modifier = Modifier.padding(bottom = 16.dp)
         )
@@ -591,7 +587,7 @@ fun AchievementsScreen(
                 .padding(vertical = 8.dp),
             colors = CardDefaults.cardColors(
                 containerColor = Color(0xFF1A1A1A),
-                contentColor = Color(0xFF00FF00)
+                contentColor = Color(0xFF00FF38)
             )
         ) {
             Column(
@@ -623,7 +619,7 @@ fun AchievementsScreen(
         Text(
             text = "Activity Calendar",
             fontSize = 20.sp,
-            color = Color(0xFF00FF00),
+            color = Color(0xFF00FF38),
             fontFamily = FontFamily.Serif,
             modifier = Modifier.padding(bottom = 8.dp)
         )
@@ -639,7 +635,7 @@ fun AchievementsScreen(
         Text(
             text = "Unlocked Awards",
             fontSize = 20.sp,
-            color = Color(0xFF00FF00),
+            color = Color(0xFF00FF38),
             fontFamily = FontFamily.Serif,
             modifier = Modifier.padding(bottom = 8.dp)
         )
@@ -648,7 +644,7 @@ fun AchievementsScreen(
             Text(
                 text = "Browse projects daily to unlock awards",
                 fontSize = 18.sp,
-                color = Color(0xFF00FF00),
+                color = Color(0xFF00FF38),
                 modifier = Modifier.padding(16.dp)
             )
         } else {
@@ -659,7 +655,7 @@ fun AchievementsScreen(
                         .padding(vertical = 8.dp),
                     colors = CardDefaults.cardColors(
                         containerColor = Color(0xFF1A1A1A),
-                        contentColor = Color(0xFF00FF00)
+                        contentColor = Color(0xFF00FF38)
                     )
                 ) {
                     Row(
@@ -698,7 +694,7 @@ fun AchievementsScreen(
         Text(
             text = "Keep up the good work!!",
             fontSize = 24.sp,
-            color = Color(0xFF00FF00),
+            color = Color(0xFF00FF38),
             fontFamily = FontFamily.Serif,
             modifier = Modifier.align(Alignment.CenterHorizontally)
         )

@@ -1,4 +1,4 @@
-package com.example.participate
+package com.science.participate
 
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.Canvas
@@ -87,7 +87,7 @@ val rainbowColors = listOf(
     Color(0xFFFF0000), // Bright Red
     Color(0xFFFF7F00), // Bright Orange
     Color(0xFFFFFF00), // Bright Yellow
-    Color(0xFF00FF00), // Bright Green
+    Color(0xFF00FF38), // Bright Green
     Color(0xFF00FFFF), // Bright Cyan
     Color(0xFF0000FF), // Bright Blue
     Color(0xFF8B00FF), // Bright Purple

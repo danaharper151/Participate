@@ -1,4 +1,4 @@
-package com.example.participate
+package com.science.participate
 
 object AchievementDefinitions {
     val allAchievements = listOf(

@@ -1,4 +1,4 @@
-package com.example.participate.ui.theme
+package com.science.participate.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
