@@ -1,8 +1,8 @@
 # Participate  
 ### Community Science Engagement Platform
-A mobile application designed to encourage daily engagement with the **SciStarter** platform through positive reinforcement and streak tracking. Built with modern Android development practices to demonstrate proficiency in mobile engineering, data persistence, UI/UX design, and behavioral psychology principles.
+A mobile application designed to encourage daily engagement with the **SciStarter** platform through positive reinforcement and streak tracking. Built with modern Android development practices to demonstrate proficiency in mobile engineering, data persistence, UI/UX design, and user engagement principles.
 
-**Community Science** is public participation in scientific research, where volunteers collaborate with scientists to collect data, make observations, and address community-driven environmental or social issues. It enables anyone to contribute to scientific discovery- regardless of background- often using technology to monitor air quality, track wildlife, or study ecosystems.  
+**Community Science** is public participation in scientific research, where volunteers collaborate with scientists to collect data, make observations, and address community-driven environmental or social issues. It enables anyone to contribute to scientific discovery - regardless of background - often using technology to monitor air quality, track wildlife, or study ecosystems.  
 
 **SciStarter.org** is a globally recognized online hub and database that connects the public with over 1,800 vetted community science projects, events, and tools. Founded to break down barriers to scientific participation, it enables all people to contribute to real research.
 
